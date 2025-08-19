@@ -51,8 +51,8 @@ export default function HomePage({
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-rose-200/30 to-transparent rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-orange-200/30 to-transparent rounded-full blur-3xl"></div>
 
-        <div className="relative container py-12 lg:py-20">
-          <div className="text-center max-w-4xl mx-auto">
+        <div className="relative container py-12 lg:py-20 max-w-4xl mx-auto">
+          <div className="text-center ">
             {/* Logo and Title */}
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="relative">
@@ -89,26 +89,24 @@ export default function HomePage({
       </header>
 
       {/* Enhanced Filters & Search */}
-  <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm">
-  <div className="container py-4">
-    <div className="flex items-center justify-between gap-6">
-      {/* Centered Category Filter */}
-      <div className="flex-1 flex justify-center">
-        <CategoryFilter currentCategory={category} />
-      </div>
+      <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+        <div className="container py-4 max-w-5xl mx-auto">
+          <div className="flex items-center justify-between gap-6">
+            {/* Centered Category Filter */}
+            <div className="flex-1 flex justify-center">
+              <CategoryFilter currentCategory={category} />
+            </div>
 
-      {/* Search Bar stays on the right */}
-      <div className="w-full max-w-sm">
-        <SearchBar currentSearch={search} />
-      </div>
-    </div>
-  </div>
-</section>
-
-
+            {/* Search Bar stays on the right */}
+            <div className="w-full max-w-sm">
+              <SearchBar currentSearch={search} />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Enhanced Main Content */}
-      <main className="container py-12">
+      <main className="container py-12 max-w-4xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -142,17 +140,17 @@ export default function HomePage({
       </main>
 
       {/* Enhanced Contact Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-rose-500 to-orange-500">
+      <section className="relative overflow-hidden bg-gradient-to-r from-rose-500 to-orange-500 ">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-black/10"></div>
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 "
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         ></div>
 
-        <div className="relative container py-16 lg:py-24 text-center">
+        <div className="relative container py-16 lg:py-24 text-center max-w-4xl mx-auto">
           <div className="max-w-3xl mx-auto">
             {/* Enhanced CTA */}
             <div className="mb-8">
@@ -219,7 +217,7 @@ export default function HomePage({
       </section>
 
       {/* Enhanced Footer */}
-      <footer className="bg-gray-900 relative overflow-hidden">
+      <footer className="bg-gray-900 relative overflow-hidden ">
         {/* Subtle pattern */}
         <div
           className="absolute inset-0 opacity-5"
@@ -228,7 +226,7 @@ export default function HomePage({
           }}
         ></div>
 
-        <div className="relative container py-12">
+        <div className="relative container py-12 max-w-4xl mx-auto">
           <div className="text-center">
             {/* Footer Logo */}
             <div className="flex items-center justify-center gap-2 mb-6">
@@ -237,7 +235,7 @@ export default function HomePage({
             </div>
 
             {/* Footer Links */}
-            <div className="flex flex-wrap items-center justify-center gap-6 mb-8 text-gray-400">
+            {/* <div className="flex flex-wrap items-center justify-center gap-6 mb-8 text-gray-400">
               <a href="#" className="hover:text-white transition-colors duration-200 text-sm">
                 About Us
               </a>
@@ -250,7 +248,7 @@ export default function HomePage({
               <a href="#" className="hover:text-white transition-colors duration-200 text-sm">
                 Reviews
               </a>
-            </div>
+            </div> */}
 
             {/* Social Media */}
             <div className="flex items-center justify-center gap-4 mb-8">

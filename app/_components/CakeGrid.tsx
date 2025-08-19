@@ -1,6 +1,5 @@
 import { sampleCakes } from "@/lib/data";
 import CakeCard from "./CakeCard";
-import type { Category } from "@/lib/types";
 
 import Link from "next/link";
 import { Cake } from "lucide-react";
@@ -35,9 +34,7 @@ export default function CakeGrid({ category, search }: CakeGridProps) {
           <div className="w-24 h-24 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
             <Cake className="w-12 h-12 text-gray-400" />
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">
-            No cakes found
-          </h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">No cakes found</h3>
           <p className="text-gray-600 mb-6">
             {search
               ? `No cakes match "${search}". Try a different search term.`
@@ -63,15 +60,14 @@ export default function CakeGrid({ category, search }: CakeGridProps) {
             ? "All Cakes"
             : `${category.charAt(0).toUpperCase()}${category.slice(1)} Cakes`}
           <span className="text-gray-500 font-normal ml-2">
-            ({filteredCakes.length}{" "}
-            {filteredCakes.length === 1 ? "cake" : "cakes"})
+            ({filteredCakes.length} {filteredCakes.length === 1 ? "cake" : "cakes"})
           </span>
         </h2>
       </div>
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20">
           {filteredCakes.map((cake) => (
             <CakeCard key={cake.id} cake={cake} />
           ))}
