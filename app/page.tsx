@@ -89,21 +89,23 @@ export default function HomePage({
       </header>
 
       {/* Enhanced Filters & Search */}
-      <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm">
-        <div className="container py-6">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Enhanced Category Filter */}
-            <div className="w-full lg:w-auto">
-              <CategoryFilter currentCategory={category} />
-            </div>
+  <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+  <div className="container py-4">
+    <div className="flex items-center justify-between gap-6">
+      {/* Centered Category Filter */}
+      <div className="flex-1 flex justify-center">
+        <CategoryFilter currentCategory={category} />
+      </div>
 
-            {/* Enhanced Search Bar */}
-            <div className="w-full lg:w-auto lg:min-w-[320px]">
-              <SearchBar currentSearch={search} />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Search Bar stays on the right */}
+      <div className="w-full max-w-sm">
+        <SearchBar currentSearch={search} />
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Enhanced Main Content */}
       <main className="container py-12">
