@@ -33,7 +33,7 @@ export default function CategoryFilter({ currentCategory }: CategoryFilterProps)
           className={cn(
             "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
             currentCategory === cat.value
-              ? "bg-primary-500 text-white shadow-md"
+              ? "bg-gradient-to-r from-rose-500 to-orange-500 text-white shadow-md"
               : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 border border-gray-200"
           )}
         >

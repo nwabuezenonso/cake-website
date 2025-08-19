@@ -3,7 +3,6 @@ import CakeCard from "./CakeCard";
 import type { Category } from "@/lib/types";
 
 import Link from "next/link";
-
 import { Cake } from "lucide-react";
 
 interface CakeGridProps {
@@ -36,7 +35,9 @@ export default function CakeGrid({ category, search }: CakeGridProps) {
           <div className="w-24 h-24 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
             <Cake className="w-12 h-12 text-gray-400" />
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No cakes found</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            No cakes found
+          </h3>
           <p className="text-gray-600 mb-6">
             {search
               ? `No cakes match "${search}". Try a different search term.`
@@ -54,23 +55,28 @@ export default function CakeGrid({ category, search }: CakeGridProps) {
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">
+    <section className="px-4 sm:px-6 lg:px-8 py-8">
+      {/* Heading */}
+      <div className="max-w-7xl mx-auto flex items-center justify-between mb-8">
+        <h2 className="text-2xl font-semibold text-gray-900">
           {category === "all"
             ? "All Cakes"
             : `${category.charAt(0).toUpperCase()}${category.slice(1)} Cakes`}
           <span className="text-gray-500 font-normal ml-2">
-            ({filteredCakes.length} {filteredCakes.length === 1 ? "cake" : "cakes"})
+            ({filteredCakes.length}{" "}
+            {filteredCakes.length === 1 ? "cake" : "cakes"})
           </span>
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredCakes.map((cake) => (
-          <CakeCard key={cake.id} cake={cake} />
-        ))}
+      {/* Grid */}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {filteredCakes.map((cake) => (
+            <CakeCard key={cake.id} cake={cake} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

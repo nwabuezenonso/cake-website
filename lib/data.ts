@@ -1,9 +1,9 @@
 import { Cake, BusinessSettings } from "./types";
 
 export const businessSettings: BusinessSettings = {
-  name: "Sweet Dreams Bakery",
+  name: "MK'S EXQUISITE CAKES",
   whatsappNumber: "2348123456789", // Format: country code + number (no +)
-  description: "Creating beautiful, delicious cakes for your special moments",
+  description: "Handcrafted premium cakes made with love, precision, and the finest ingredients. Each creation is a masterpiece designed to make your special moments unforgettable."
 };
 
 // Sample cake data (in production, this would come from a database)
