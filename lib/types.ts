@@ -6,6 +6,8 @@ export interface Cake {
   price: number;
   category: string;
   imageUrl: string;
+  size: string;
+  extra: string;
   createdAt: string;
   featured?: boolean;
 }

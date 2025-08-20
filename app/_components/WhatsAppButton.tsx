@@ -6,7 +6,7 @@ import { generateWhatsAppUrl } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 interface WhatsAppButtonProps {
-  cake: Cake;
+  cake: any;
   businessSettings: BusinessSettings;
   className?: string;
 }

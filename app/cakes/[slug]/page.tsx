@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import WhatsAppButton from "@/app/_components/WhatsAppButton";
+import { ArrowLeft, Heart, Share2, Star } from "lucide-react";
 import { sampleCakes, businessSettings } from "@/lib/data";
-import { formatPrice } from "@/lib/utils";
 import type { Metadata } from "next";
+import CakeOptions from "@/app/_components/CakeOptions";
 
 interface CakePageProps {
   params: { slug: string };
@@ -15,9 +14,7 @@ export async function generateMetadata({ params }: CakePageProps): Promise<Metad
   const cake = sampleCakes.find((c) => c.slug === params.slug);
 
   if (!cake) {
-    return {
-      title: "Cake Not Found",
-    };
+    return { title: "Cake Not Found" };
   }
 
   return {
@@ -32,121 +29,150 @@ export async function generateMetadata({ params }: CakePageProps): Promise<Metad
 }
 
 export async function generateStaticParams() {
-  return sampleCakes.map((cake) => ({
-    slug: cake.slug,
-  }));
+  return sampleCakes.map((cake) => ({ slug: cake.slug }));
 }
 
 export default function CakePage({ params }: CakePageProps) {
   const cake = sampleCakes.find((c) => c.slug === params.slug);
 
-  if (!cake) {
-    notFound();
-  }
+  if (!cake) notFound();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-10">
-        <div className="container px-6 md:px-10 py-4 flex items-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium transition-colors"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back to Gallery
-          </Link>
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-orange-50">
+      {/* Enhanced Header with Breadcrumb */}
+      <header className="bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-50">
+        <div className="container px-6 md:px-10 py-4">
+          <div className="flex items-center justify-between">
+            <nav className="flex items-center space-x-2 text-sm">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-rose-600 hover:text-rose-700 font-medium transition-all duration-200 hover:bg-rose-50 px-3 py-2 rounded-full"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Back to Gallery
+              </Link>
+              <span className="text-gray-400">/</span>
+              <span className="text-gray-600 font-medium truncate max-w-xs">{cake.name}</span>
+            </nav>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2">
+              <button className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200">
+                <Share2 className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* Cake Section */}
-      <main className="container px-6 md:px-10 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Cake Image */}
-          <div className="relative">
-            <div className="aspect-square relative overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-gray-100">
-              <Image
-                src={cake.imageUrl}
-                alt={cake.name}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-                priority
-              />
-            </div>
-          </div>
+      {/* Enhanced Main Content */}
+      <main className="container px-6 md:px-10 py-8 md:py-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            {/* Enhanced Image Section */}
+            <div className="space-y-6">
+              {/* Main Image */}
+              <div className="relative group">
+                <div className="aspect-square relative overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5">
+                  <Image
+                    src={cake.imageUrl}
+                    alt={cake.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    priority
+                  />
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          {/* Cake Details */}
-          <div className="flex flex-col justify-center space-y-8">
-            <div>
-              <span className="inline-block px-4 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4 capitalize">
-                {cake.category}
-              </span>
-              <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-                {cake.name}
-              </h1>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                {cake.description}
-              </p>
-            </div>
+                  {/* Floating Badge */}
+                  {cake.featured && (
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                      Featured
+                    </div>
+                  )}
 
-            <div className="border-t pt-6">
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-3xl font-bold text-primary-600">
-                  {formatPrice(cake.price)}
-                </span>
-                <span className="text-sm text-gray-600 bg-gray-100 px-4 py-1 rounded-full">
-                  Made to Order
-                </span>
+                  {/* Rating Badge */}
+                  <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium shadow-lg flex items-center gap-1">
+                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <span className="text-gray-800">4.9</span>
+                  </div>
+                </div>
               </div>
 
-              <WhatsAppButton
-                cake={cake}
-                businessSettings={businessSettings}
-                className="w-full shadow-lg hover:scale-[1.02] transition-transform duration-300"
-              />
+              {/* Thumbnail Gallery */}
+              <div className="grid grid-cols-4 gap-3">
+                {[1, 2, 3, 4].map((index) => (
+                  <div
+                    key={index}
+                    className="aspect-square relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer hover:shadow-lg transition-shadow duration-200"
+                  >
+                    <Image
+                      src={cake.imageUrl}
+                      alt={`${cake.name} view ${index}`}
+                      fill
+                      className="object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 ring-2 ring-transparent hover:ring-rose-300 transition-all duration-200 rounded-xl" />
+                  </div>
+                ))}
+              </div>
 
-              <p className="text-sm text-gray-500 mt-4 text-center">
-                Click above to start your WhatsApp order with pre-filled details
-              </p>
+              {/* Additional Information Tabs */}
+              <div className="mt-16 bg-white rounded-2xl shadow-xl ring-1 ring-black/5 overflow-hidden">
+                <div className="border-b border-gray-200">
+                  <nav className="flex space-x-8 px-6">
+                    {["Description", "Ingredients", "Reviews", "Delivery Info"].map((tab) => (
+                      <button
+                        key={tab}
+                        className="py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium text-sm transition-colors duration-200 first:text-rose-600 first:border-rose-600"
+                      >
+                        {tab}
+                      </button>
+                    ))}
+                  </nav>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-700 leading-relaxed">
+                    Our {cake.name.toLowerCase()} is crafted with the finest ingredients and baked
+                    fresh daily. Each cake is a perfect blend of flavor, texture, and visual appeal,
+                    designed to make your special occasions truly memorable. Made with love in our
+                    artisan bakery.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Details Section */}
+            <div className="space-y-8">
+              {/* Cake Header */}
+              <div className="space-y-4">
+                <div className="flex items-start justify-between">
+                  <div className="space-y-2">
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                      {cake.name}
+                    </h1>
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="font-medium">4.9</span>
+                        <span>(127 reviews)</span>
+                      </div>
+                      <span>•</span>
+                      <span>Available for delivery</span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-lg text-gray-700 leading-relaxed">{cake.description}</p>
+              </div>
+
+              {/* Enhanced Cake Options Component */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl ring-1 ring-black/5">
+                <CakeOptions cake={cake} businessSettings={businessSettings} />
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Related Cakes */}
-        <section className="mt-20">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            You Might Also Like
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sampleCakes
-              .filter((c) => c.id !== cake.id && c.category === cake.category)
-              .slice(0, 3)
-              .map((relatedCake) => (
-                <Link
-                  key={relatedCake.id}
-                  href={`/cakes/${relatedCake.slug}`}
-                  className="group block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="aspect-square relative overflow-hidden">
-                    <Image
-                      src={relatedCake.imageUrl}
-                      alt={relatedCake.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
-                      {relatedCake.name}
-                    </h3>
-                    <p className="text-primary-600 font-bold">
-                      {formatPrice(relatedCake.price)}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-          </div>
-        </section>
       </main>
     </div>
   );
