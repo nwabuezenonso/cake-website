@@ -45,38 +45,48 @@ export default function CakePage({ params }: CakePageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container py-4">
+      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-10">
+        <div className="container px-6 md:px-10 py-4 flex items-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors"
+            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-5 w-5" />
             Back to Gallery
           </Link>
         </div>
       </header>
 
-      {/* Cake Details */}
-      <main className="container py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Image */}
+      {/* Cake Section */}
+      <main className="container px-6 md:px-10 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Cake Image */}
           <div className="relative">
-            <div className="aspect-square relative overflow-hidden rounded-lg bg-white shadow-lg">
-              <Image src={cake.imageUrl} alt={cake.name} fill className="object-cover" priority />
+            <div className="aspect-square relative overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-gray-100">
+              <Image
+                src={cake.imageUrl}
+                alt={cake.name}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500"
+                priority
+              />
             </div>
           </div>
 
-          {/* Details */}
-          <div className="flex flex-col justify-center space-y-6">
+          {/* Cake Details */}
+          <div className="flex flex-col justify-center space-y-8">
             <div>
-              <div className="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4 capitalize">
+              <span className="inline-block px-4 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4 capitalize">
                 {cake.category}
-              </div>
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{cake.name}</h1>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">{cake.description}</p>
+              </span>
+              <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                {cake.name}
+              </h1>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {cake.description}
+              </p>
             </div>
 
             <div className="border-t pt-6">
@@ -84,12 +94,16 @@ export default function CakePage({ params }: CakePageProps) {
                 <span className="text-3xl font-bold text-primary-600">
                   {formatPrice(cake.price)}
                 </span>
-                <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                <span className="text-sm text-gray-600 bg-gray-100 px-4 py-1 rounded-full">
                   Made to Order
                 </span>
               </div>
 
-              <WhatsAppButton cake={cake} businessSettings={businessSettings} className="w-full" />
+              <WhatsAppButton
+                cake={cake}
+                businessSettings={businessSettings}
+                className="w-full shadow-lg hover:scale-[1.02] transition-transform duration-300"
+              />
 
               <p className="text-sm text-gray-500 mt-4 text-center">
                 Click above to start your WhatsApp order with pre-filled details
@@ -99,27 +113,35 @@ export default function CakePage({ params }: CakePageProps) {
         </div>
 
         {/* Related Cakes */}
-        <section className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">You Might Also Like</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="mt-20">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
+            You Might Also Like
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {sampleCakes
               .filter((c) => c.id !== cake.id && c.category === cake.category)
               .slice(0, 3)
               .map((relatedCake) => (
-                <Link key={relatedCake.id} href={`/cakes/${relatedCake.slug}`} className="group">
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="aspect-square relative overflow-hidden">
-                      <Image
-                        src={relatedCake.imageUrl}
-                        alt={relatedCake.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-gray-900 mb-1">{relatedCake.name}</h3>
-                      <p className="text-primary-600 font-bold">{formatPrice(relatedCake.price)}</p>
-                    </div>
+                <Link
+                  key={relatedCake.id}
+                  href={`/cakes/${relatedCake.slug}`}
+                  className="group block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="aspect-square relative overflow-hidden">
+                    <Image
+                      src={relatedCake.imageUrl}
+                      alt={relatedCake.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
+                      {relatedCake.name}
+                    </h3>
+                    <p className="text-primary-600 font-bold">
+                      {formatPrice(relatedCake.price)}
+                    </p>
                   </div>
                 </Link>
               ))}
