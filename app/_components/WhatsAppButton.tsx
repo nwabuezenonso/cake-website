@@ -1,25 +1,28 @@
 "use client";
 
 import { MessageCircle } from "lucide-react";
-import { Cake, BusinessSettings } from "@/lib/types";
+import { BusinessSettings } from "@/lib/types";
 import { generateWhatsAppUrl } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 interface WhatsAppButtonProps {
-  cake: any;
+  cake?: any;
   businessSettings: BusinessSettings;
   className?: string;
 }
 
 export default function WhatsAppButton({ cake, businessSettings, className }: WhatsAppButtonProps) {
-  const whatsappUrl = generateWhatsAppUrl(
-    businessSettings.whatsappNumber,
-    cake.name,
-    cake.price,
-    businessSettings.name
-  );
-
   const handleWhatsAppClick = () => {
+    const whatsappUrl = generateWhatsAppUrl(
+      businessSettings.whatsappNumber,
+      businessSettings.name,
+      cake.name,
+      cake.size,
+      cake.flavor,
+      cake.extras,
+      cake.addons,
+      cake.totalPrice
+    );
     window.open(whatsappUrl, "_blank");
   };
 

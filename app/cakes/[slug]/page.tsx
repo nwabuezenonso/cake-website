@@ -1,45 +1,28 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Heart, Share2, Star } from "lucide-react";
+import { ArrowLeft, Share2, Star } from "lucide-react";
 import { sampleCakes, businessSettings } from "@/lib/data";
-import type { Metadata } from "next";
 import CakeOptions from "@/app/_components/CakeOptions";
 
-interface CakePageProps {
-  params: { slug: string };
-}
+import { useParams } from "next/navigation";
 
-export async function generateMetadata({ params }: CakePageProps): Promise<Metadata> {
-  const cake = sampleCakes.find((c) => c.slug === params.slug);
+// ❌ These two can't live in a client component, so remove them
+// export async function generateMetadata() {}
+// export async function generateStaticParams() {}
 
-  if (!cake) {
-    return { title: "Cake Not Found" };
-  }
+export default function CakePage() {
+  const { slug } = useParams();
 
-  return {
-    title: `${cake.name} - ${businessSettings.name}`,
-    description: cake.description,
-    openGraph: {
-      title: cake.name,
-      description: cake.description,
-      images: [cake.imageUrl],
-    },
-  };
-}
+  const cake = sampleCakes.find((c) => c.slug === slug);
 
-export async function generateStaticParams() {
-  return sampleCakes.map((cake) => ({ slug: cake.slug }));
-}
-
-export default function CakePage({ params }: CakePageProps) {
-  const cake = sampleCakes.find((c) => c.slug === params.slug);
-
-  if (!cake) notFound();
+  if (!cake) return notFound();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-orange-50">
-      {/* Enhanced Header with Breadcrumb */}
+      {/* Header */}
       <header className="bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-50">
         <div className="container px-6 md:px-10 py-4">
           <div className="flex items-center justify-between">
@@ -65,13 +48,12 @@ export default function CakePage({ params }: CakePageProps) {
         </div>
       </header>
 
-      {/* Enhanced Main Content */}
+      {/* Main Content */}
       <main className="container px-6 md:px-10 py-8 md:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Enhanced Image Section */}
+            {/* Image Section */}
             <div className="space-y-6">
-              {/* Main Image */}
               <div className="relative group">
                 <div className="aspect-square relative overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5">
                   <Image
@@ -81,17 +63,11 @@ export default function CakePage({ params }: CakePageProps) {
                     className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     priority
                   />
-                  {/* Gradient Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Floating Badge */}
                   {cake.featured && (
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                       Featured
                     </div>
                   )}
-
-                  {/* Rating Badge */}
                   <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium shadow-lg flex items-center gap-1">
                     <Star className="h-4 w-4 text-yellow-400 fill-current" />
                     <span className="text-gray-800">4.9</span>
@@ -99,7 +75,7 @@ export default function CakePage({ params }: CakePageProps) {
                 </div>
               </div>
 
-              {/* Thumbnail Gallery */}
+              {/* Thumbnails */}
               <div className="grid grid-cols-4 gap-3">
                 {[1, 2, 3, 4].map((index) => (
                   <div
@@ -117,7 +93,7 @@ export default function CakePage({ params }: CakePageProps) {
                 ))}
               </div>
 
-              {/* Additional Information Tabs */}
+              {/* Tabs */}
               <div className="mt-16 bg-white rounded-2xl shadow-xl ring-1 ring-black/5 overflow-hidden">
                 <div className="border-b border-gray-200">
                   <nav className="flex space-x-8 px-6">
@@ -135,16 +111,14 @@ export default function CakePage({ params }: CakePageProps) {
                   <p className="text-gray-700 leading-relaxed">
                     Our {cake.name.toLowerCase()} is crafted with the finest ingredients and baked
                     fresh daily. Each cake is a perfect blend of flavor, texture, and visual appeal,
-                    designed to make your special occasions truly memorable. Made with love in our
-                    artisan bakery.
+                    designed to make your special occasions truly memorable.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Details Section */}
+            {/* Details Section */}
             <div className="space-y-8">
-              {/* Cake Header */}
               <div className="space-y-4">
                 <div className="flex items-start justify-between">
                   <div className="space-y-2">
@@ -166,7 +140,6 @@ export default function CakePage({ params }: CakePageProps) {
                 <p className="text-lg text-gray-700 leading-relaxed">{cake.description}</p>
               </div>
 
-              {/* Enhanced Cake Options Component */}
               <div className="bg-white rounded-2xl p-6 shadow-xl ring-1 ring-black/5">
                 <CakeOptions cake={cake} businessSettings={businessSettings} />
               </div>
