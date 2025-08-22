@@ -1,13 +1,13 @@
 export interface Cake {
-  id: string;
+  id?: string;
   slug: string;
   name: string;
   description: string;
   price: number;
   category: string;
   imageUrl: string;
-  size: string;
-  extra: string;
+  size?: string;
+  extra?: string;
   createdAt: string;
   featured?: boolean;
 }
