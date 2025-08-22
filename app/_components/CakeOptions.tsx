@@ -4,16 +4,9 @@ import { useState, useMemo } from "react";
 import { formatPrice } from "@/lib/utils";
 import WhatsAppButton from "@/app/_components/WhatsAppButton";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Star, Sparkles, Plus, Minus, Check, Gift, Zap, Heart, Crown } from "lucide-react";
+import { Clock, Star, Sparkles, Check, Gift, Zap, Heart, Crown } from "lucide-react";
 
 const sizeOptions = [
   {

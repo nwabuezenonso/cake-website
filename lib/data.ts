@@ -1,4 +1,4 @@
-import { Cake, BusinessSettings } from "./types";
+import { BusinessSettings } from "./types";
 
 export const businessSettings: BusinessSettings = {
   name: "MK'S EXQUISITE CAKES",

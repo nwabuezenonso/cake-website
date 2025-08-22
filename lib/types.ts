@@ -8,7 +8,7 @@ export interface Cake {
   imageUrl: string;
   size?: string;
   extra?: string;
-  createdAt: string;
+  createdAt?: string;
   featured?: boolean;
 }
 
