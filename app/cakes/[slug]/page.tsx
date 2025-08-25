@@ -15,7 +15,7 @@ import { useParams } from "next/navigation";
 
 export default function CakePage() {
   const { slug } = useParams();
-
+// link
   const cake = sampleCakes.find((c) => c.slug === slug);
 
   if (!cake) return notFound();
