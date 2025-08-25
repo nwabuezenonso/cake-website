@@ -24,6 +24,7 @@ export default function WhatsAppButton({ cake, businessSettings, className }: Wh
       cake.totalPrice
     );
     window.open(whatsappUrl, "_blank");
+    console.log("WhatsApp URL:", whatsappUrl);
   };
 
   return (

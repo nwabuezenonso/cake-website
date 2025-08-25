@@ -2,7 +2,7 @@ import { BusinessSettings } from "./types";
 
 export const businessSettings: BusinessSettings = {
   name: "MK'S EXQUISITE CAKES",
-  whatsappNumber: "+2349114616365",
+  whatsappNumber: "+2348131302861",
   description:
     "Handcrafted premium cakes made with love, precision, and the finest ingredients. Each creation is a masterpiece designed to make your special moments unforgettable.",
 };
