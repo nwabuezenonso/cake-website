@@ -201,27 +201,32 @@ export default function CakeOptions({ cake, businessSettings }: any) {
       </div>
 
       {/* Enhanced Pricing Section */}
-      <div className="bg-gradient-to-r from-rose-50 to-orange-50 rounded-2xl p-6 border border-rose-100">
-        <div className="flex items-center justify-between mb-3">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="text-3xl font-bold text-gray-900">{formatPrice(totalPrice)}</span>
-              {savings > 0 && (
-                <Badge className="bg-green-100 text-green-800 border-green-200">
-                  Save {formatPrice(savings)}
-                </Badge>
-              )}
-            </div>
-            <p className="text-sm text-gray-600">Final price with all customizations</p>
-          </div>
-          <div className="text-right">
-            <Badge variant="outline" className="bg-white">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Made to Order
-            </Badge>
-          </div>
-        </div>
+   <div className="bg-gradient-to-r from-rose-50 to-orange-50 rounded-2xl p-6 border border-rose-100">
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+    
+    {/* Left side: Price & savings */}
+    <div className="space-y-1">
+      <div className="flex items-center gap-2 flex-wrap">
+        <span className="text-3xl font-bold text-gray-900">{formatPrice(totalPrice)}</span>
+        {savings > 0 && (
+          <Badge className="bg-green-100 text-green-800 border-green-200">
+            Save {formatPrice(savings)}
+          </Badge>
+        )}
       </div>
+      <p className="text-sm text-gray-600">Final price with all customizations</p>
+    </div>
+
+    {/* Right side: Made to order badge */}
+    <div className="text-left sm:text-right">
+      <Badge variant="outline" className="bg-white">
+        <Sparkles className="w-3 h-3 mr-1" />
+        Made to Order
+      </Badge>
+    </div>
+
+  </div>
+</div>
 
       {/* Enhanced Size Selection */}
       <div className="space-y-4">

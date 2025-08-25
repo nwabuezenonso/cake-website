@@ -26,17 +26,20 @@ export default function CakePage() {
       <header className="bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-50">
         <div className="container px-6 md:px-10 py-4">
           <div className="flex items-center justify-between">
-            <nav className="flex items-center space-x-2 text-sm">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-rose-600 hover:text-rose-700 font-medium transition-all duration-200 hover:bg-rose-50 px-3 py-2 rounded-full"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back to Gallery
-              </Link>
-              <span className="text-gray-400">/</span>
-              <span className="text-gray-600 font-medium truncate max-w-xs">{cake.name}</span>
-            </nav>
+           <nav className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm">
+  <Link
+    href="/"
+    className="inline-flex items-center gap-1 sm:gap-2 text-rose-600 hover:text-rose-700 font-medium transition-all duration-200 hover:bg-rose-50 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full truncate max-w-[120px] sm:max-w-none"
+  >
+    <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
+    <span className="truncate">Back to Gallery</span>
+  </Link>
+  <span className="text-gray-400">/</span>
+  <span className="text-gray-600 font-medium truncate max-w-[100px] sm:max-w-xs">
+    {cake.name}
+  </span>
+</nav>
+
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2">

@@ -13,7 +13,7 @@ interface CakeCardProps {
 export default function CakeCard({ cake }: CakeCardProps) {
   return (
     <Link href={`/cakes/${cake.slug}`} className="group block">
-      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 transform w-72 hover:-translate-y-1 py-0">
+      <Card className="overflow-hidden hover:shadow-lg transition-all mx-auto duration-300 transform w-72 hover:-translate-y-1 py-0">
         {/* Image Section */}
         <div className="aspect-square relative overflow-hidden">
           <Image

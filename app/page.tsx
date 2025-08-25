@@ -46,18 +46,24 @@ function CakeGridWithFilters() {
 
   return (
     <>
-      <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm">
-        <div className="container py-4 max-w-5xl mx-auto">
-          <div className="flex items-center justify-between gap-6">
-            <div className="flex-1 flex justify-center">
-              <CategoryFilter currentCategory={category} />
-            </div>
-            <div className="w-full max-w-sm">
-              <SearchBar currentSearch={search} />
-            </div>
-          </div>
-        </div>
-      </section>
+  <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+  <div className="container px-4 py-4 max-w-5xl mx-auto">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      
+      {/* Search on top for mobile */}
+      <div className="w-full max-w-sm order-1 md:order-none">
+        <SearchBar currentSearch={search} />
+      </div>
+      {/* Categories below search on mobile, inline center on desktop */}
+      <div className="flex-1 flex justify-center md:justify-start order-2 md:order-none">
+        <CategoryFilter currentCategory={category} />
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
       <main className="container py-12 max-w-4xl mx-auto">
         <div className="text-center mb-12">
@@ -108,7 +114,7 @@ export default function HomePage() {
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="relative">
-                <Cake className="h-12 w-12 text-rose-500 drop-shadow-sm" />
+                <Cake className="h-12 w-12 text-rose-500 drop-shadow-sm hidden sm:block" />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-orange-400 rounded-full animate-pulse"></div>
               </div>
               <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-rose-600 to-orange-500 bg-clip-text text-transparent">

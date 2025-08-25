@@ -31,7 +31,7 @@ export default function WhatsAppButton({ cake, businessSettings, className }: Wh
     <button
       onClick={handleWhatsAppClick}
       className={cn(
-        "flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl",
+        "flex items-center justify-center gap- bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl",
         className
       )}
     >
