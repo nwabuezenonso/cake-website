@@ -8,17 +8,6 @@ import SearchBar from "./_components/SearchBar";
 import { businessSettings } from "@/lib/data";
 import {
   Cake,
-  Search,
-  Phone,
-  Star,
-  Clock,
-  Sparkles,
-  MessageCircle,
-  Shield,
-  Truck,
-  Heart,
-  Facebook,
-  Instagram,
 } from "lucide-react";
 
 // Skeleton for loading
